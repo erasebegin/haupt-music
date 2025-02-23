@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Inter", sans-serif;
+  }
+}
+
+@theme {
+  --color-primary-yellow: #FFCD00;
+  --color-primary-cream: #FFFCD7;
+  --color-primary-blue: #00D1FF;
+  --color-primary-pink: #FF1D77;
+}
