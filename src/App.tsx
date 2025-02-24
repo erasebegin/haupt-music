@@ -2,6 +2,7 @@ import './index.css';
 import Logo from './components/Logo';
 import { useEffect, useState } from 'react';
 import MailingList from './components/MailingList';
+import Feedback from './components/Feedback';
 
 export function App() {
   const [logoColor, setLogoColor] = useState('rgb(0, 209, 255)');
@@ -37,12 +38,12 @@ export function App() {
 
   return (
     <div
-      className="min-h-[100dvh] w-full relative overflow-hidden px-5 py-10 flex flex-col align-center"
+      className="min-h-[100dvh] w-full relative overflow-hidden px-5 py-10 flex flex-col items-center"
       style={{ backgroundColor }}
     >
       <Logo className="fixed min-w-[750px] z-1 top-7 -left-15" color={logoColor} />
 
-      {/* CONTACT */}
+      {/* MAILING LIST */}
       <MailingList />
 
       {/* SPOTIFY PLAYER */}
@@ -58,24 +59,29 @@ export function App() {
       </div>
 
       {/* SOCIAL LINKS */}
-      <div className="bg-primary-cream flex gap-3 justify-center py-8 mt-5 z-2 relative">
-        <a href="https://www.instagram.com" className="text-primary-pink text-xl">
+      <div className="bg-primary-cream flex gap-6 justify-center py-8 mt-5 z-2 relative px-5">
+        <a
+          href="https://www.tiktok.com"
+          className="relative text-primary-pink text-xl underline-effect"
+        >
           Tik Tok
         </a>
-        <a href="https://www.instagram.com" className="text-primary-pink text-xl">
+        <a
+          href="https://www.instagram.com"
+          className="relative text-primary-pink text-xl underline-effect"
+        >
           Instagram
         </a>
-        <a href="https://www.instagram.com" className="text-primary-pink text-xl">
+        <a
+          href="https://www.spotify.com"
+          className="relative text-primary-pink text-xl underline-effect"
+        >
           Spotify
         </a>
       </div>
+
       {/* FEEDBACK FORM */}
-      <div className="py-20 z-2 relative">
-        <textarea className="h-[200px] bg-primary-cream p-3" placeholder="suggestion box" />
-        <button className="bg-primary-pink text-primary-cream w-[110px] h-[70px] absolute right-14 top-40">
-          <span className="absolute text-lg top-3">OK</span>
-        </button>
-      </div>
+      <Feedback />
     </div>
   );
 }

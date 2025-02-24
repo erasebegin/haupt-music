@@ -1,4 +1,6 @@
 import { FC, useState } from 'react';
+import Spinner from './Spinner';
+import { isValidEmail } from '@/utils';
 
 const MailingList: FC = () => {
   const [step, setStep] = useState(0);
@@ -6,6 +8,16 @@ const MailingList: FC = () => {
   const [email, setEmail] = useState('');
 
   async function submitEmail() {
+    if (!isValidEmail(email)) {
+      setStatus('invalid-email');
+      return;
+    }
+
+    if (email.length <= 0) {
+      setStatus('empty');
+      return;
+    }
+
     setStatus('loading');
 
     try {
@@ -29,11 +41,37 @@ const MailingList: FC = () => {
     }
   }
 
+  function getMessage(s: string): string {
+    let message = 'Friends forever';
+    switch (s) {
+      case 'loading':
+        message = 'Hang on a sec...';
+        break;
+      case 'success':
+        message = 'Good stuff';
+        break;
+      case 'empty':
+        message = "There's nothing here...";
+        break;
+      case 'error':
+        message = "That didn't work, something's conked out";
+        break;
+      case 'invalid-email':
+        message = "Are you sure that's an email address?";
+        break;
+    }
+    return message;
+  }
+
   return (
     <div className="relative z-2 h-[250px] w-full">
       <div
-        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out"
-        style={{ transform: step === 0 ? 'translateX(0)' : 'translateX(110%)' }}
+        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out left-1/2 w-[300px]"
+        style={{
+          transform: step === 0 ? 'translateX(-50%)' : 'translateX(110%)',
+          opacity: step === 0 ? 1 : 0,
+          pointerEvents: step === 0 ? 'initial' : 'none',
+        }}
       >
         <p className="bg-primary-cream p-5 mb-5 text-primary-pink">
           You don't have to give me your email but you should
@@ -56,40 +94,49 @@ const MailingList: FC = () => {
       </div>
 
       <div
-        className="pt-5 pb-20 absolute top-0 left-0 transition-all duration-200 ease-in-out w-full"
-        style={{ transform: step === 2 ? 'translateX(0)' : 'translateX(-110%)' }}
+        className="pt-5 pb-20 absolute top-0 left-1/2 transition-all duration-200 ease-in-out"
+        style={{
+          transform: step === 2 ? 'translateX(-50%)' : 'translateX(-110%)',
+          opacity: step === 2 ? 1 : 0,
+          pointerEvents: step === 2 ? 'initial' : 'none',
+        }}
       >
-        <p className="bg-primary-cream p-5 mb-5 text-primary-pink">
-          {status === 'error' ? "That didn't work, something's conked out" : 'Friends forever'}
-        </p>
+        <p className="bg-primary-cream p-5 mb-5 text-primary-pink">{getMessage(status)}</p>
         <div className="flex items-center">
           <input
-            className={`bg-primary-cream h-[42px] p-3 opacity-${status === 'success' ? '80' : '1'}`}
+            className={`bg-primary-cream h-[42px] p-3`}
+            style={{
+              opacity: status === 'success' ? 0.5 : 1,
+            }}
             placeholder="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={e => {
+              setEmail(e.target.value);
+              setStatus('');
+            }}
             disabled={status === 'success'}
           />
           <button
             className="bg-primary-pink text-primary-cream w-[110px] h-[70px] relative"
             onClick={submitEmail}
+            disabled={status === 'success'}
           >
-            <span className={`absolute text-lg top-3 right-${status === 'success' ? 3 : 10}`}>
-              {status === 'loading' ? (
-                <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-primary-blue mt-1" />
-              ) : status === 'success' ? (
-                'THANKS'
-              ) : (
-                'OK'
-              )}
+            <span
+              className={`absolute text-lg top-3 ${status === 'success' ? 'left-2' : 'left-10'}`}
+            >
+              {status === 'loading' ? <Spinner /> : status === 'success' ? 'THANKS' : 'OK'}
             </span>
           </button>
         </div>
       </div>
 
       <div
-        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out"
-        style={{ transform: step === 1 ? 'translateX(0)' : 'translateX(-110%)' }}
+        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out left-1/2 w-[300px]"
+        style={{
+          transform: step === 1 ? 'translateX(-50%)' : 'translateX(-110%)',
+          opacity: step === 1 ? 1 : 0,
+          pointerEvents: step === 1 ? 'initial' : 'none',
+        }}
       >
         <p className="bg-primary-cream p-5 mb-5 text-primary-pink">It's a secret</p>
         <button

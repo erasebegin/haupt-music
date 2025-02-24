@@ -30,7 +30,7 @@ const server = serve({
           const mailOptions = {
             from: 'haupt landing page',
             to: 'chris.james.haupt@gmail.com',
-            subject: 'feedback',
+            subject: 'Haupt Music - Feedback Form - New Feedback',
             text: message,
           };
 

@@ -12,3 +12,45 @@
   --color-primary-blue: #00D1FF;
   --color-primary-pink: #FF1D77;
 }
+
+.underline-effect::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 80%;
+  height: 1px;
+  background-color: currentColor;
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease, transform 0.3s ease;
+}
+
+.underline-effect:nth-child(2)::after {
+  width: 70%;
+  bottom: -5px;
+  transform: translateX(-50%);
+}
+
+.underline-effect:nth-child(3)::after {
+  width: 60%;
+  bottom: -4px;
+  transform: translateX(-50%);
+}
+
+/* Hover Effect */
+.underline-effect:hover::after {
+  bottom: -6px;
+  /* Move down slightly */
+  transform: translateX(-50%) rotate(5deg);
+  /* Change angle */
+}
+
+.underline-effect:nth-child(2):hover::after {
+  bottom: -7px;
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+.underline-effect:nth-child(3):hover::after {
+  bottom: -5px;
+  transform: translateX(-50%) rotate(4deg);
+}
