@@ -3,9 +3,12 @@ import Logo from './components/Logo';
 import { useEffect, useState } from 'react';
 import MailingList from './components/MailingList';
 import Feedback from './components/Feedback';
+import AudioPlayer from './components/SpotifyPlayer';
 
 export function App() {
+  const logoBaseSize = 55;
   const [logoColor, setLogoColor] = useState('rgb(0, 209, 255)');
+  const [logoSize, setLogoSize] = useState(logoBaseSize);
   const [backgroundColor, setBackground] = useState('rgb(255, 205, 0)');
 
   useEffect(() => {
@@ -15,6 +18,8 @@ export function App() {
       const scrollPosition = window.scrollY;
       const maxScroll = getMaxScroll();
       const scrollPercentage = Math.min((scrollPosition / maxScroll) * 100, 100);
+
+      const easedScroll = Math.pow(scrollPercentage, 1.5) / 100;
 
       // Logo color transition (from 0, 209, 255)
       const logoR = Math.round(0 + 255 * (scrollPercentage / 100));
@@ -26,6 +31,7 @@ export function App() {
       const bgG = Math.round(205 + 50 * (scrollPercentage / 100)); // Transition towards 255
       const bgB = Math.round(0 + 255 * (scrollPercentage / 100)); // Transition towards 255
 
+      setLogoSize(logoBaseSize + easedScroll * 5);
       setLogoColor(`rgb(${logoR}, ${logoG}, ${logoB})`);
       setBackground(`rgb(${bgR}, ${bgG}, ${bgB})`);
     };
@@ -41,40 +47,37 @@ export function App() {
       className="min-h-[100dvh] w-full relative overflow-hidden px-5 py-10 flex flex-col items-center"
       style={{ backgroundColor }}
     >
-      <Logo className="fixed min-w-[750px] z-1 top-7 -left-15" color={logoColor} />
+      <Logo className="fixed min-w-[750px] z-1 top-7 -left-3" color={logoColor} size={logoSize} />
 
       {/* MAILING LIST */}
       <MailingList />
 
       {/* SPOTIFY PLAYER */}
-      <div className="z-2 relative pb-20">
-        <iframe
-          src="https://open.spotify.com/embed/track/3QYlmgJB2yFgsIwdXmeiiz?utm_source=generator&theme=0"
-          width="100%"
-          height="352"
-          allowFullScreen={false}
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        />
-      </div>
+      <AudioPlayer />
 
       {/* SOCIAL LINKS */}
-      <div className="bg-primary-cream flex gap-6 justify-center py-8 mt-5 z-2 relative px-5">
+      <div className="bg-primary-cream flex gap-6 justify-center py-8 mt-5 z-2 relative px-5 min-w-[350px]">
         <a
-          href="https://www.tiktok.com"
+          href="https://www.tiktok.com/@hauptaupt"
           className="relative text-primary-pink text-xl underline-effect"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Tik Tok
         </a>
         <a
-          href="https://www.instagram.com"
+          href="https://www.instagram.com/hauptaupt/"
           className="relative text-primary-pink text-xl underline-effect"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Instagram
         </a>
         <a
-          href="https://www.spotify.com"
+          href="https://open.spotify.com/artist/4rrzTA2rvLjZqJoUIXR9uK?si=QzLUBltUTwiAqLSSPVUAvQ"
           className="relative text-primary-pink text-xl underline-effect"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Spotify
         </a>

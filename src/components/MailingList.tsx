@@ -66,7 +66,7 @@ const MailingList: FC = () => {
   return (
     <div className="relative z-2 h-[250px] w-full">
       <div
-        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out left-1/2 w-[300px]"
+        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out left-1/2 w-[350px]"
         style={{
           transform: step === 0 ? 'translateX(-50%)' : 'translateX(110%)',
           opacity: step === 0 ? 1 : 0,
@@ -94,7 +94,7 @@ const MailingList: FC = () => {
       </div>
 
       <div
-        className="pt-5 pb-20 absolute top-0 left-1/2 transition-all duration-200 ease-in-out"
+        className="pt-5 pb-20 absolute top-0 left-1/2 transition-all duration-200 ease-in-out min-w-[350px]"
         style={{
           transform: step === 2 ? 'translateX(-50%)' : 'translateX(-110%)',
           opacity: step === 2 ? 1 : 0,
@@ -131,7 +131,7 @@ const MailingList: FC = () => {
       </div>
 
       <div
-        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out left-1/2 w-[300px]"
+        className="pt-5 pb-20 absolute transition-all duration-200 ease-in-out left-1/2 min-w-[350px]"
         style={{
           transform: step === 1 ? 'translateX(-50%)' : 'translateX(-110%)',
           opacity: step === 1 ? 1 : 0,
