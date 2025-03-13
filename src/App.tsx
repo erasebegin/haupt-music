@@ -12,6 +12,10 @@ export function App() {
   const [backgroundColor, setBackground] = useState('rgb(255, 205, 0)');
 
   useEffect(() => {
+    // Set initial size based on device width
+    if (window.innerWidth < 768) {
+      setLogoSize(100);
+    }
     const getMaxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
 
     const handleScroll = () => {
@@ -19,7 +23,7 @@ export function App() {
       const maxScroll = getMaxScroll();
       const scrollPercentage = Math.min((scrollPosition / maxScroll) * 100, 100);
 
-      const easedScroll = Math.pow(scrollPercentage, 1.5) / 100;
+      const easedScroll = Math.pow(scrollPercentage, 1.75) / 100;
 
       // Logo color transition (from 0, 209, 255)
       const logoR = Math.round(0 + 255 * (scrollPercentage / 100));
@@ -31,7 +35,12 @@ export function App() {
       const bgG = Math.round(205 + 50 * (scrollPercentage / 100)); // Transition towards 255
       const bgB = Math.round(0 + 255 * (scrollPercentage / 100)); // Transition towards 255
 
-      setLogoSize(logoBaseSize + easedScroll * 5);
+      // Use a larger base size and smaller expansion rate on mobile devices
+      const isMobile = window.innerWidth < 768;
+      const expansionRate = isMobile ? 2 : 5;
+      const mobileBaseSize = isMobile ? 100 : logoBaseSize;
+
+      setLogoSize(mobileBaseSize + easedScroll * expansionRate);
       setLogoColor(`rgb(${logoR}, ${logoG}, ${logoB})`);
       setBackground(`rgb(${bgR}, ${bgG}, ${bgB})`);
     };
@@ -47,7 +56,11 @@ export function App() {
       className="min-h-[100dvh] w-full relative overflow-hidden px-5 py-10 flex flex-col items-center"
       style={{ backgroundColor }}
     >
-      <Logo className="fixed min-w-[750px] z-1 top-7 -left-3" color={logoColor} size={logoSize} />
+      <Logo
+        className="fixed w-full md:min-w-[750px] z-1 md:top-7 md:-left-3 top-2 left-1/2 -translate-x-1/2 md:translate-x-0"
+        color={logoColor}
+        size={logoSize}
+      />
 
       {/* MAILING LIST */}
       <MailingList />

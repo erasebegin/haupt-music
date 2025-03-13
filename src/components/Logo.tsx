@@ -5,11 +5,12 @@ const Logo: FC<Props> = ({ color, className, size }) => {
   return (
     <div className={className}>
       <svg
-        width={`${size}%` || '100%'}
-        height={`${size}%` || '100%'}
+        width={`${size}%`}
+        height={`${size}%`}
         id="Layer_2"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 2595.69 2336.88"
+        preserveAspectRatio="xMidYMid meet"
       >
         <defs></defs>
         <g id="Layer_2-2">
