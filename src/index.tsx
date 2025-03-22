@@ -20,10 +20,10 @@ const server = serve({
 
         async function sendEmail() {
           const transporter = nodemailer.createTransport({
-            service: 'gmail', // or use SMTP settings
+            service: 'gmail',
             auth: {
-              user: 'chris.james.haupt@gmail.com', // Replace with your email
-              pass: 'nako wygo jjep szut',
+              user: 'music.haupt@gmail.com',
+              pass: 'mlhv bffp gwti yfpo',
             },
           });
 
