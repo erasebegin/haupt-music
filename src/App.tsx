@@ -1,12 +1,13 @@
 import './index.css';
 import Logo from './components/Logo';
 import { useEffect, useState } from 'react';
+import { useIsMobile } from './hooks/useIsMobile';
 import MailingList from './components/MailingList';
 import Feedback from './components/Feedback';
 import AudioPlayer from './components/SpotifyPlayer';
 
 export function App() {
-  const isMobile = window.innerWidth < 768;
+  const isMobile = useIsMobile();
   const logoBaseSize = isMobile ? 100 : 80;
   const expansionRate = isMobile ? 2 : 5;
 
