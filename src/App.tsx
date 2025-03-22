@@ -59,7 +59,7 @@ export function App() {
       style={{ backgroundColor }}
     >
       <Logo
-        className="fixed w-full md:w-[80%] md:min-w-[750px] md:max-w-750px z-1 md:top-7 md:-left-3 top-2 left-1/2 -translate-x-1/2 md:translate-x-0"
+        className="fixed w-full md:w-[80%] md:min-w-[750px] md:max-w-[1000px] z-1 md:top-7 top-2 left-1/2 -translate-x-1/2"
         color={logoColor}
         size={logoSize}
       />
