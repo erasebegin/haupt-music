@@ -6,10 +6,14 @@ import Feedback from './components/Feedback';
 import AudioPlayer from './components/SpotifyPlayer';
 
 export function App() {
-  const logoBaseSize = 55;
+  const isMobile = window.innerWidth < 768;
+  const logoBaseSize = isMobile ? 100 : 80;
+  const expansionRate = isMobile ? 2 : 5;
+
   const [logoColor, setLogoColor] = useState('rgb(0, 209, 255)');
   const [logoSize, setLogoSize] = useState(logoBaseSize);
   const [backgroundColor, setBackground] = useState('rgb(255, 205, 0)');
+  console.log({ isMobile, logoBaseSize, logoSize });
 
   useEffect(() => {
     // Set initial size based on device width
@@ -34,13 +38,9 @@ export function App() {
       const bgR = Math.round(255 - 155 * (scrollPercentage / 100)); // Transition towards 100
       const bgG = Math.round(205 + 50 * (scrollPercentage / 100)); // Transition towards 255
       const bgB = Math.round(0 + 255 * (scrollPercentage / 100)); // Transition towards 255
+      console.log({ logoSize, easedScroll, expansionRate });
 
-      // Use a larger base size and smaller expansion rate on mobile devices
-      const isMobile = window.innerWidth < 768;
-      const expansionRate = isMobile ? 2 : 5;
-      const mobileBaseSize = isMobile ? 100 : logoBaseSize;
-
-      setLogoSize(mobileBaseSize + easedScroll * expansionRate);
+      setLogoSize(logoSize + easedScroll * expansionRate);
       setLogoColor(`rgb(${logoR}, ${logoG}, ${logoB})`);
       setBackground(`rgb(${bgR}, ${bgG}, ${bgB})`);
     };
@@ -57,7 +57,7 @@ export function App() {
       style={{ backgroundColor }}
     >
       <Logo
-        className="fixed w-full md:min-w-[750px] z-1 md:top-7 md:-left-3 top-2 left-1/2 -translate-x-1/2 md:translate-x-0"
+        className="fixed w-full md:min-w-[750px] md:max-w-750px z-1 md:top-7 md:-left-3 top-2 left-1/2 -translate-x-1/2 md:translate-x-0"
         color={logoColor}
         size={logoSize}
       />
