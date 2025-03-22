@@ -1,6 +1,9 @@
 import { serve } from 'bun';
 import index from './index.html';
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const server = serve({
   routes: {
@@ -23,7 +26,7 @@ const server = serve({
             service: 'gmail',
             auth: {
               user: 'music.haupt@gmail.com',
-              pass: 'mlhv bffp gwti yfpo',
+              pass: process.env.EMAIL_APP_PASSWORD,
             },
           });
 
