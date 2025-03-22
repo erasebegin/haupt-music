@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+console.log('Email App Password:', process.env.EMAIL_APP_PASSWORD);
+
 const server = serve({
   routes: {
     // Serve index.html for all unmatched routes.
