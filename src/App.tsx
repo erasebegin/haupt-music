@@ -41,7 +41,8 @@ export function App() {
       const bgB = Math.round(0 + 255 * (scrollPercentage / 100)); // Transition towards 255
       console.log({ logoSize, easedScroll, expansionRate });
 
-      setLogoSize(logoSize + easedScroll * expansionRate);
+      const newLogoSize = logoSize + easedScroll * expansionRate;
+      setLogoSize(isNaN(newLogoSize) ? logoBaseSize : newLogoSize);
       setLogoColor(`rgb(${logoR}, ${logoG}, ${logoB})`);
       setBackground(`rgb(${bgR}, ${bgG}, ${bgB})`);
     };
