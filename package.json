@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bun-plugin-tailwind": "^0.0.14",
+    "dotenv": "^16.4.7",
     "graphql-request": "^7.1.2",
     "nodemailer": "^6.10.0",
     "react": "^19",

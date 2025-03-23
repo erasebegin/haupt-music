@@ -1,11 +1,6 @@
 import { serve } from 'bun';
 import index from './index.html';
 import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-console.log('Email App Password:', process.env.EMAIL_APP_PASSWORD);
 
 const server = serve({
   routes: {
@@ -14,10 +9,8 @@ const server = serve({
 
     '/api/send-email': {
       async POST(req) {
-        const body = await req.json(); // Convert ReadableStream to JSON
+        const body = await req.json();
         const { message } = body;
-
-        console.log({ body });
 
         if (!message) {
           return Response.json({ status: 400, error: 'Missing required fields' });
@@ -28,7 +21,7 @@ const server = serve({
             service: 'gmail',
             auth: {
               user: 'music.haupt@gmail.com',
-              pass: process.env.EMAIL_APP_PASSWORD,
+              pass: 'mlhv bffp gwti yfpo',
             },
           });
 
@@ -40,8 +33,7 @@ const server = serve({
           };
 
           try {
-            const info = await transporter.sendMail(mailOptions);
-            console.log('Email sent:', info.response);
+            await transporter.sendMail(mailOptions);
             return { success: true, message: 'Email sent successfully' };
           } catch (error) {
             console.error('Email sending failed:', error);

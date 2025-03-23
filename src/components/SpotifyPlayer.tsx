@@ -4,6 +4,7 @@ import playIcon from '../assets/icons/play.svg';
 import pauseIcon from '../assets/icons/pause.svg';
 import skipIcon from '../assets/icons/skip.svg';
 import 'spotify-audio-element';
+import Spinner from './Spinner';
 
 export type TracksQueryResponse = {
   tracks: Track[];
@@ -128,8 +129,9 @@ function AudioPlayer() {
   };
 
   {
-    status === 'loading' && <p>Loading tracks...</p>;
+    status === 'loading' && <Spinner color="pink" />;
   }
+
   {
     status === 'error' && <p>Error loading tracks.</p>;
   }
@@ -149,7 +151,7 @@ function AudioPlayer() {
         I get paid, but this is free
       </p>
 
-      {status === 'loading' && <p>Loading tracks...</p>}
+      {status === 'loading' && <Spinner color="pink" />}
       {status === 'error' && <p>Error loading tracks.</p>}
 
       {tracks && tracks.length > 0 ? (

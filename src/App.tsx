@@ -8,7 +8,7 @@ import AudioPlayer from './components/SpotifyPlayer';
 
 export function App() {
   const isMobile = useIsMobile();
-  const logoBaseSize = isMobile ? 120 : 80;
+  const logoBaseSize = isMobile ? 100 : 80;
   const expansionRate = isMobile ? 2 : 5;
 
   const [logoColor, setLogoColor] = useState('rgb(0, 209, 255)');
