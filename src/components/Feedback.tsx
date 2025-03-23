@@ -68,8 +68,10 @@ const Feedback: FC = () => {
         className="bg-primary-pink text-primary-cream w-[110px] absolute right-0 top-40"
         style={{
           height: status === 'success' ? 100 : 70,
+          cursor: status === 'success' ? 'initial' : 'pointer',
         }}
         onClick={sendFeedback}
+        disabled={status === 'success'}
       >
         <span className="absolute text-lg top-3" style={{ right: status === 'success' ? 0 : 30 }}>
           {status === 'success' ? "YOU'RE ASKING A LOT" : status === 'loading' ? <Spinner /> : 'OK'}

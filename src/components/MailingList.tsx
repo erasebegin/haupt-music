@@ -77,13 +77,13 @@ const MailingList: FC = () => {
           You don't have to give me your email but you should
         </p>
         <button
-          className="bg-primary-pink text-primary-cream w-[110px] h-[70px] relative"
+          className="bg-primary-pink text-primary-cream w-[110px] h-[70px] relative cursor-pointer"
           onClick={() => setStep(2)}
         >
           <span className="absolute text-lg top-3">OK</span>
         </button>
         <button
-          className="bg-primary-pink text-primary-cream text-left w-[110px] h-[70px] relative ml-3"
+          className="bg-primary-pink text-primary-cream text-left w-[110px] h-[70px] relative ml-3 cursor-pointer"
           onClick={() => setStep(1)}
         >
           <span className="absolute bottom-0 right-6 text-lg">
@@ -107,6 +107,7 @@ const MailingList: FC = () => {
             className={`bg-primary-cream h-[42px] p-3`}
             style={{
               opacity: status === 'success' ? 0.5 : 1,
+              cursor: status === 'success' ? 'initial' : 'pointer',
             }}
             placeholder="email"
             value={email}
@@ -120,6 +121,9 @@ const MailingList: FC = () => {
             className="bg-primary-pink text-primary-cream w-[110px] h-[70px] relative"
             onClick={submitEmail}
             disabled={status === 'success'}
+            style={{
+              cursor: status === 'success' ? 'initial' : 'pointer',
+            }}
           >
             <span
               className={`absolute text-lg top-3 ${status === 'success' ? 'left-2' : 'left-10'}`}
@@ -140,13 +144,13 @@ const MailingList: FC = () => {
       >
         <p className="bg-primary-cream p-5 mb-5 text-primary-pink">It's a secret</p>
         <button
-          className="bg-primary-pink text-primary-cream w-[110px] h-[70px] relative"
+          className="bg-primary-pink text-primary-cream w-[110px] h-[70px] relative cursor-pointer"
           onClick={() => setStep(2)}
         >
           <span className="absolute text-lg top-3">OK</span>
         </button>
         <button
-          className="bg-primary-pink text-primary-cream text-left w-[110px] h-[70px] relative ml-3"
+          className="bg-primary-pink text-primary-cream text-left w-[110px] h-[70px] relative ml-3 cursor-pointer"
           onClick={() => setStep(2)}
         >
           <span className="absolute bottom-0 right-6 text-lg">OK</span>
